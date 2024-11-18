@@ -1,30 +1,60 @@
-import React, { useState } from 'react';
-import './App.css';
-import ProductList from './ProductList.jsx';
-import AddProductForm from './AddProductForm.jsx';
+import React, { useState} from 'react';
 
-const App = () => {
-  const [products, setProducts] = useState([
-    { id: 1, name: 'Lip Gloss', price: 12, description: 'This pink shimmery gloss will leave your lips moisturized and shining all day'},
-    { id: 2, name: 'Blush', price: 10, description: 'Vibrant, bold, and unique, this blush is long lasting and perfect to complete your look'},
-    { id: 3, name: 'Mascara', price: 15, description: 'No makeup look is complete without our long lasting and lengthening mascara'},
-    {id: 4, name: 'Foundation', price: 20, description: 'With over 20 shades, our foundation formula leaves a glowy and smooth finish everytime'},
-  ]);
+function AddProductForm({addProduct}) { // info to create a new product
+    const [id, setId] = useState('');
+    const [name, setName]= useState('');
+    const[price, setPrice]= useState('');
+    const[description, setDescription]= useState('');
 
-  const addProduct = (newProduct) => {
-    setProducts ([...products, {...newProduct}]);
-  }; // allow new product
+    const handlechange =(event)=> {
+        const {name, value} = event.target;
+        if(name === 'id') setId(value);
+        if(name==='name') setName(value);
+        if(name==='price') setPrice(value);
+        if(name ==='description') setDescription(value);
+    };
 
-  return ( 
-    <div>
-<h1> Product Dashboard</h1>
-<ProductList products={products}/> 
-<AddProductForm addProduct={addProduct}/>
-    </div>
-  ); //adds product list, and function
+    const handleSubmit = (event) => {
+        event.preventDefault(); 
+        if (name && price && description){
+            addProduct({ id, name, price, description});
+            setId('');
+            setName('');
+            setPrice('');
+            setDescription('');
+        }
+    };
+    return (
+        <div> {}
+            <h2> Add a New Product</h2>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label> ID: 
+                        <input type ='number'name='id'value={id} onChange={handlechange}/>
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        Name:
+                        <input type ='text' name='name'value={name} onChange={handlechange}/>
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        Price:
+                        <input type='number'name='price'value={price} onChange={handlechange}/>
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        Description:
+                        <input type='text' name='description'value={description} onChange={handlechange}/>
+                    </label>
+                </div>
+                <button type='submit'> Add New Product</button>
+            </form>
+        </div>
+    );
 };
 
-  
-
-export default App;
-
+export default AddProductForm;
