@@ -7,6 +7,6 @@ const ProductItem = ({product})=> {
             <p>Price: ${product.price}</p>
             <p>Description: {product.description}</p>
         </li>
-    );
+    ); // lists the products with price and description
 };
 export default ProductItem;

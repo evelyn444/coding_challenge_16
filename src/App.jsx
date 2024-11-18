@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
-import ProductList from './ProductList.jsx'
-import AddProductForm from './AddProductForm.jsx'
+import ProductList from './ProductList.jsx';
+import AddProductForm from './AddProductForm.jsx';
 
 const App = () => {
   const [products, setProducts] = useState([
@@ -13,15 +13,15 @@ const App = () => {
 
   const addProduct = (newProduct) => {
     setProducts ([...products, {...newProduct}]);
-  };
+  }; // allow new product
 
-  return (
+  return ( 
     <div>
 <h1> Product Dashboard</h1>
-<ProductList products={products}/>
+<ProductList products={products}/> 
 <AddProductForm addProduct={addProduct}/>
     </div>
-  );
+  ); //adds product list, and function
 };
 
   
