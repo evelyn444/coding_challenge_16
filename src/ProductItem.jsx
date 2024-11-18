@@ -10,3 +10,4 @@ const ProductItem = ({product})=> {
     ); // lists the products with price and description
 };
 export default ProductItem;
+s
